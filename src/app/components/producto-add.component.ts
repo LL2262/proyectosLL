@@ -27,10 +27,18 @@ export class ProductoAddComponent{
     onSubmit()
     {
       console.log(this.producto);
+
+      this._productoService.makeFileRequest([], this.filesToUpload).then((result) => 
+      {
+            console.log(result);
+      },
+      (error) => { console.log(error);}
+        );
+
       this._productoService.addProducto(this.producto).subscribe(
           response => {
             if(response.code == 200){
-                this._router.navigate(['/home']);
+                this._router.navigate(['/productos']);
             }else{
                 console.log(response);
             }    
@@ -39,6 +47,15 @@ export class ProductoAddComponent{
               console.log(<any>error);
           }
       )
+    }
+
+    public filesToUpload;
+    public resultUpload;
+
+    fileChangeEvent(fileInput: any)
+    {
+        this.filesToUpload = <Array<File>>fileInput.target.files;
+        console.log(this.filesToUpload);
     }
 
 }
