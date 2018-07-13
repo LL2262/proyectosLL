@@ -4,7 +4,6 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/observable';
 import { Producto } from '../models/producto';
 import { GLOBAL } from './global';
-import { resolve } from 'dns';
 
 @Injectable()
 export class ProductoService{
@@ -30,7 +29,7 @@ export class ProductoService{
         return this._http.post(this.url+'productos', params, {headers: headers}).map(res=>res.json());
     }
 
-    makeFileRequest(paramms: Array<string>, files: Array<File>)
+    makeFileRequest(url: string, paramms: Array<string>, files: Array<File>)
     {
         return new Promise((resolve, reject) => {
             var formData: any = new FormData();
@@ -56,7 +55,7 @@ export class ProductoService{
                 }
             };
 
-            xhr.open("POST", this.url+'upload-file', true);
+            xhr.open("POST", url, true);
             xhr.send(formData);
         });
     }
