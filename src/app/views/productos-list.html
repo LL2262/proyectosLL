@@ -11,7 +11,7 @@
             <div class="thumbnail">
                 <div *ngIf="producto.imagen" class="imagen_container">
                     <img src="http://localhost/curso-angular4-backend/uploads/{{producto.
-                    imagen}}" class="producto_imagen"/>
+                    imagen}}" class="producto_imagen" />
                 </div>
                 <div *ngIf="!producto.imagen">
                     <div class="imagen_relleno"></div>
@@ -20,10 +20,32 @@
                     <h3>{{producto.nombre}}</h3>
                     <P>$ {{producto.precio}}</P>
                     <P>
-                        <a [routerLink]="['/producto/', producto.id]" [routerLinkActive]= "['activado']" class="btn btn-md btn-primary">Ver</a>
-                        <a href="#" class="btn btn-md btn-warning">Editar</a>
-                        <a href="#" class="btn btn-md btn-danger">Borrar</a>
+                        <a [routerLink]="['/producto/', producto.id]" [routerLinkActive]="['activado']" class="btn btn-md btn-primary">Ver</a>
+                        <a [routerLink]="['/editar-producto/', producto.id]" [routerLinkActive]="['activado']" class="btn btn-md btn-warning">Editar</a>
+                        <a class="btn btn-md btn-danger" data-toggle="modal" data-target="#myModal">Borrar</a>
                     </P>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Eliminar producto</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>¿Esta seguro que desea eliminar este producto?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a (click)="onDeleteProducto(producto.id)" class="btn btn-md btn-success" data-dismiss="modal">Aceptar</a>
+                            <a class="btn btn-md btn-default" data-dismiss="modal">Cancelar</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

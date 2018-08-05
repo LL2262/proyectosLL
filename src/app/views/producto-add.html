@@ -14,8 +14,12 @@
   <input type="number" step="any" #precio="ngModel" name="precio" [(ngModel)]="producto.precio" class="form-control" required/>
 
   <label>Imagen</label>
+  <div *ngIf="is_edit">
+      <img src="http://localhost/curso-angular4-backend/uploads/{{producto.
+        imagen}}" width="60"/>
+  </div>
   <input type="file" class="form-control" (change)="fileChangeEvent($event)" />
   <br/>
-  <input type="submit" value="Crear Producto Nuevo" [disabled]="!formProducto.form.valid" class="btn btn-success"/>
+  <input type="submit" value="{{titulo}}" [disabled]="!formProducto.form.valid" class="btn btn-success"/>
 </form>
 

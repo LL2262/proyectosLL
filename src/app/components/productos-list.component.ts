@@ -20,6 +20,11 @@ export class ProductosListComponent{
 
     ngOnInit()
     {
+        this.getProductos();
+    }
+
+    getProductos()
+    {
         this._productoService.getProductos().subscribe(
             result => {
                 this.productos = result.data;
@@ -28,5 +33,21 @@ export class ProductosListComponent{
                 console.log(<any>error);
             }
         );
+    }
+
+    onDeleteProducto(id)
+    {
+            this._productoService.deleteProducto(id).subscribe(
+                response => {
+                    if (response.code == 200) {
+                        this.getProductos();
+                    } else {
+                        console.log(response);
+                    }
+                },
+                error => {
+                    console.log(<any>error);
+                }
+            );
     }
 }
