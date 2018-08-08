@@ -22,13 +22,13 @@
                     <P>
                         <a [routerLink]="['/producto/', producto.id]" [routerLinkActive]="['activado']" class="btn btn-md btn-primary">Ver</a>
                         <a [routerLink]="['/editar-producto/', producto.id]" [routerLinkActive]="['activado']" class="btn btn-md btn-warning">Editar</a>
-                        <a class="btn btn-md btn-danger" data-toggle="modal" data-target="#myModal">Borrar</a>
+                        <a class="btn btn-md btn-danger" data-toggle="modal" attr.data-target="#delete{{producto.id}}" >Borrar</a>
                     </P>
                 </div>
             </div>
 
             <!-- Modal -->
-            <div id="myModal" class="modal fade" role="dialog">
+            <div id="delete{{producto.id}}" class="modal fade" role="dialog">
                 <div class="modal-dialog">
 
                     <!-- Modal content-->
@@ -45,7 +45,6 @@
                             <a class="btn btn-md btn-default" data-dismiss="modal">Cancelar</a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
